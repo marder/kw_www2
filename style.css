@@ -1,0 +1,112 @@
+body {
+    margin-top: 40px;
+    background: #f5f2e9;
+    font-family: "Segoe UI", sans-serif;
+    color: #333;
+}
+
+h2 {
+    font-weight: 700;
+    color: #2e7d32;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+h2::before {
+    content: "🧭";
+    font-size: 32px;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #2e7d32;
+}
+
+.form-control {
+    border: 2px solid #c8d6c8;
+    border-radius: 8px;
+}
+
+.form-control:focus {
+    border-color: #2e7d32;
+    box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.25);
+}
+
+#result {
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 20px;
+    color: #1976d2;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#result::before {
+    content: "📐";
+    font-size: 28px;
+}
+
+#suggestions {
+    position: absolute;
+    width: 100%;
+    z-index: 1000;
+    max-height: 220px;
+    overflow-y: auto;
+    cursor: pointer;
+}
+
+#suggestions li {
+    padding: 6px 10px;
+}
+
+#suggestions li:hover {
+    background: #f0f0f0;
+}
+
+footer {
+    margin-top: 60px;
+    text-align: center;
+    font-size: 18px;
+    color: #4a4a4a;
+    opacity: 0.8;
+}
+
+/* Pola w jednym rzędzie na dużych ekranach */
+@media (min-width: 992px) {
+    .form-control {
+        max-width: 300px;
+    }
+}
+
+/* Na telefonach — większe i jedno pod drugim */
+@media (max-width: 576px) {
+    body {
+        font-size: 20px;
+        padding: 10px;
+    }
+
+    h2 {
+        font-size: 28px;
+    }
+
+    .form-label {
+        font-size: 20px;
+    }
+
+    .form-control {
+        font-size: 20px;
+        padding: 14px;
+        width: 100%;
+    }
+
+    #result {
+        font-size: 26px;
+    }
+
+    footer {
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
+}

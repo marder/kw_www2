@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Kalkulator numeru księgi wieczystej</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="container">
+
+    <h2 class="mb-4">Kalkulator nowego numeru księgi wieczystej</h2>
+
+    <div class="row g-3">
+
+        <!-- AUTOCOMPLETE -->
+        <div class="col-12 col-lg-4 position-relative">
+            <label class="form-label">Sygnatura sądu:</label>
+
+            <input type="text" id="courtInput" class="form-control" placeholder="Wpisz miasto lub kod sądu...">
+            <input type="hidden" id="court">
+
+            <ul id="suggestions" class="list-group"></ul>
+
+            <div class="invalid-feedback">Wybierz sygnaturę sądu.</div>
+        </div>
+
+        <!-- STARY NUMER -->
+        <div class="col-12 col-lg-4">
+            <label class="form-label">Stary numer księgi:</label>
+            <input type="text" id="old" class="form-control">
+            <div class="invalid-feedback">Numer musi zawierać wyłącznie cyfry.</div>
+        </div>
+
+    </div>
+
+    <div id="result" class="text-primary mt-4"></div>
+
+    <footer>Dla Justynki 😘</footer>
+
+    <script src="courts.js"></script>
+    <script src="app.js"></script>
+
+</body>
+
+</html>
