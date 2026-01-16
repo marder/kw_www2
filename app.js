@@ -93,3 +93,47 @@ function generateKW() {
     document.getElementById("result").innerText =
         "Nowy numer księgi wieczystej: " + newNumber;
 }
+
+function downloadMultiple() {
+    const court = document.getElementById("court").value.trim();
+    const multiOld = document.getElementById("multiOld").value.trim();
+
+    if (court.length !== 4) {
+        alert("Najpierw wybierz sygnaturę sądu.");
+        return;
+    }
+
+    if (multiOld.length === 0) {
+        alert("Wpisz co najmniej jeden numer KW.");
+        return;
+    }
+
+    const numbers = multiOld
+        .split(",")
+        .map(n => n.trim())
+        .filter(n => /^[0-9]+$/.test(n));
+
+    if (numbers.length === 0) {
+        alert("Brak poprawnych numerów KW.");
+        return;
+    }
+
+    let output = "";
+
+    numbers.forEach(old => {
+        const control = calculateNr(court, old);
+        const filling = "0".repeat(8 - old.length);
+        const newNumber = `${court}/${filling}${old}/${control}`;
+        output += newNumber + "\n";
+    });
+
+    const blob = new Blob([output], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "nowe_numery_kw.txt";
+    a.click();
+
+    URL.revokeObjectURL(url);
+}
