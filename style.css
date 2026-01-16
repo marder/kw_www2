@@ -1,10 +1,36 @@
+/* ===========================
+   GLOBAL
+   =========================== */
 body {
     margin-top: 40px;
     background: #f5f2e9;
     font-family: "Segoe UI", sans-serif;
-    color: #333;
+    color: #222;
+    position: relative;
+    overflow-x: hidden;
 }
 
+/* Delikatna siatka geodezyjna w tle */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+    transform: rotate(2deg);
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.15;
+}
+
+/* ===========================
+   NAGŁÓWEK
+   =========================== */
 h2 {
     font-weight: 700;
     color: #2e7d32;
@@ -16,16 +42,22 @@ h2 {
 h2::before {
     content: "🧭";
     font-size: 32px;
+    display: inline-block;
 }
 
+/* ===========================
+   FORMULARZ
+   =========================== */
 .form-label {
     font-weight: 600;
     color: #2e7d32;
 }
 
 .form-control {
+    background: #ffffff;
     border: 2px solid #c8d6c8;
     border-radius: 8px;
+    color: #222;
 }
 
 .form-control:focus {
@@ -33,6 +65,36 @@ h2::before {
     box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.25);
 }
 
+/* Placeholdery wyraźne w jasnym trybie */
+.form-control::placeholder {
+    color: #777;
+    opacity: 1;
+}
+
+/* Podpowiedzi (autocomplete) */
+#suggestions {
+    position: absolute;
+    width: 100%;
+    z-index: 1000;
+    max-height: 220px;
+    overflow-y: auto;
+    cursor: pointer;
+}
+
+#suggestions li {
+    background: #ffffff;
+    color: #222;
+    border-color: #ddd;
+    padding: 6px 10px;
+}
+
+#suggestions li:hover {
+    background: #f0f0f0;
+}
+
+/* ===========================
+   WYNIK
+   =========================== */
 #result {
     font-size: 24px;
     font-weight: 700;
@@ -48,39 +110,20 @@ h2::before {
     font-size: 28px;
 }
 
-#suggestions {
-    position: absolute;
-    width: 100%;
-    z-index: 1000;
-    max-height: 220px;
-    overflow-y: auto;
-    cursor: pointer;
-}
-
-#suggestions li {
-    padding: 6px 10px;
-}
-
-#suggestions li:hover {
-    background: #f0f0f0;
-}
-
+/* ===========================
+   STOPKA
+   =========================== */
 footer {
     margin-top: 60px;
     text-align: center;
     font-size: 18px;
-    color: #4a4a4a;
-    opacity: 0.8;
+    color: #555;
+    opacity: 0.9;
 }
 
-/* Pola w jednym rzędzie na dużych ekranach */
-@media (min-width: 992px) {
-    .form-control {
-        max-width: 300px;
-    }
-}
-
-/* Na telefonach — większe i jedno pod drugim */
+/* ===========================
+   MOBILE
+   =========================== */
 @media (max-width: 576px) {
     body {
         font-size: 20px;
@@ -108,5 +151,14 @@ footer {
     footer {
         font-size: 20px;
         margin-bottom: 30px;
+    }
+}
+
+/* ===========================
+   DESKTOP — WĘŻSZE POLA
+   =========================== */
+@media (min-width: 992px) {
+    .form-control {
+        max-width: 300px;
     }
 }
